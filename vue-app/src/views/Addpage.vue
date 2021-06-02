@@ -28,7 +28,7 @@ export default {
       };
 
       // Send up to parent
-      this.$emit("add-task", newTodo);
+      //this.$emit("add-task", newTodo);
       console.log("sdf");
       //if you want to send any data into server before redirection then you can do it here
       //this.$router.push("/" + newTodo);

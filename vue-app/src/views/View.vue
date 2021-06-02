@@ -53,7 +53,9 @@ export default {
   },
   async created() {
     console.log("slug: " + this.slug);
-    this.addTodo(this.slug);
+    if (this.slug != null) {
+      this.addTodo(this.slug);
+    }
     try {
       const res = await axios.get(
         "https://jsonplaceholder.typicode.com/todos?_limit=5"
