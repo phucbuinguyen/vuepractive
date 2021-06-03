@@ -47,6 +47,7 @@ form {
 
 .assTaskFrm .btn {
   margin-left: 24px;
+  background-color: #dd50ae;
 }
 
 input[type="text"] {

@@ -1,10 +1,15 @@
 <template>
-  <div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
-    <p>
-      <input type="checkbox" v-on:change="markComplete" />
-      {{todo.title}}
-      <button class="del" @click="$emit('del-todo', todo.id)"></button>
-    </p>
+  <div class="todo-item" v-bind:class="{ 'is-complete': todo.completed }">
+    <input
+      type="checkbox"
+      v-on:change="markComplete"
+      @click="$emit('mark-completed', todo.id)"
+    />
+    {{ todo.title }}
+    <li id="btnWrap">
+      <button class="btnEdit" @click="$emit('edit-todo', todo.id)">Edit</button>
+      <button class="btnDel" @click="$emit('del-todo', todo.id)">Delete</button>
+    </li>
   </div>
 </template>
 
@@ -15,8 +20,8 @@ export default {
   methods: {
     markComplete() {
       this.todo.completed = !this.todo.completed;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -26,18 +31,30 @@ export default {
   padding: 10px;
   border-bottom: 1px #ccc dotted;
 }
-
+li {
+  list-style-type: none;
+}
 .is-complete {
   text-decoration: line-through;
 }
-
-.del {
-  background: #ff0000;
+#btnWrap {
+  float: right;
+}
+.btnDel {
+  background: #dd50ae;
   color: #fff;
   border: none;
   padding: 5px 9px;
-  border-radius: 50%;
+
   cursor: pointer;
-  float: right;
+}
+
+.btnEdit {
+  background: #dd50ae;
+  color: #fff;
+  border: none;
+  padding: 5px 9px;
+  margin-right: 12px;
+  cursor: pointer;
 }
 </style>

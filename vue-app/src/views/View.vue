@@ -2,7 +2,11 @@
   <div id="app">
     <Header />
 
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
+    <Todos
+      v-bind:todos="todos"
+      v-on:del-todo="deleteTodo"
+      v-on:mark-completed="markCompleted"
+    />
   </div>
 </template>
 
@@ -26,10 +30,12 @@ export default {
 
   methods: {
     async deleteTodo(id) {
+      console.log("delete id: " + id);
       try {
         const res = await axios.delete(
-          `https://jsonplaceholder.typicode.com/todos/${id}`
+          "https://60b87598b54b0a0017c039fe.mockapi.io/store/" + id
         );
+        console.log("delete id: " + id);
         this.todos = this.todos.filter((todo) => todo.id !== id);
       } catch (error) {
         console.log(error);
@@ -39,7 +45,7 @@ export default {
       try {
         const { title, completed } = newTodo;
         const res = await axios.post(
-          "https://jsonplaceholder.typicode.com/todos",
+          "https://60b87598b54b0a0017c039fe.mockapi.io/store/",
           {
             title,
             completed,
@@ -51,6 +57,7 @@ export default {
         console.log(error);
       }
     },
+    async markCompleted(id) {},
   },
   async created() {
     console.log("slug: " + this.slug);
