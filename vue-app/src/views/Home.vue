@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-
+    <View />
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
@@ -9,12 +9,14 @@
 <script>
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
+import View from "./View";
 import axios from "axios";
 
 export default {
   name: "Home",
   components: {
     Todos,
+    View,
   },
   data() {
     return {

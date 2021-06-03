@@ -10,10 +10,13 @@ import Header from "./components/layout/Header";
 export default {
   name: "App",
   components: {
-    Header
-  }
+    Header,
+  },
 };
 </script>
 
 <style>
+div#app {
+  padding: 20px;
+}
 </style>
