@@ -8,7 +8,7 @@
 
 <script>
 import Todos from "../components/Todos";
-
+import store from "@/store";
 import axios from "axios";
 
 export default {
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       slug: this.$route.params.newTodo,
+      store,
       todos: [],
     };
   },
@@ -57,9 +58,11 @@ export default {
       this.addTodo(this.slug);
     }
     try {
+      console.log("store.localStore: " + store.localStore);
       const res = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        "https://60b87598b54b0a0017c039fe.mockapi.io/store"
       );
+      //const res = store.localStore;
       this.todos = res.data;
     } catch (error) {
       console.log(error);

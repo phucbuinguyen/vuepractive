@@ -15,21 +15,40 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <router-link tag="a" class="nav-link" to="/">Home</router-link>
+          <li class="nav-item">
+            <router-link
+              tag="li"
+              class="nav-link"
+              active-class="active"
+              exact
+              to="/"
+              >Home</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link tag="a" class="nav-link" to="/addpage"
+            <router-link
+              tag="li"
+              class="nav-link"
+              active-class="active"
+              to="/addpage"
               >Add Task</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link tag="a" class="nav-link" to="/completed"
+            <router-link
+              tag="li"
+              class="nav-link"
+              active-class="active"
+              to="/completed"
               >Completed</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link tag="a" class="nav-link" to="/trash"
+            <router-link
+              tag="li"
+              class="nav-link"
+              active-class="active"
+              to="/trash"
               >Trash</router-link
             >
           </li>
@@ -59,7 +78,7 @@ export default {
   text-decoration: none;
 }
 
-li.nav-item.active {
+li.nav-link.router-link-exact-active.active {
   background-color: rgb(79, 221, 86);
 }
 </style>

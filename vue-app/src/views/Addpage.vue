@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <form @submit="addTask">
-      <input type="text" name="title" placeholder="Add Todo" v-model="title" />
+    <form class="assTaskFrm" @submit="addTask">
+      <input type="text" name="title" placeholder="Add Task" v-model="title" />
       <input type="submit" value="Submit" class="btn" />
     </form>
   </div>
@@ -43,6 +43,10 @@ export default {
 <style scoped>
 form {
   display: flex;
+}
+
+.assTaskFrm .btn {
+  margin-left: 24px;
 }
 
 input[type="text"] {

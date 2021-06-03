@@ -54,9 +54,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos?_limit=5"
-      );
+      const res = await axios.get("../localJson.json");
       this.todos = res.data;
     } catch (error) {
       console.log(error);
