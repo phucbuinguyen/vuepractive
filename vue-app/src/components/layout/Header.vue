@@ -52,6 +52,15 @@
               >Trash</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link
+              tag="li"
+              class="nav-link"
+              active-class="active"
+              to="/counter"
+              >Countdown</router-link
+            >
+          </li>
         </ul>
       </div>
     </nav>

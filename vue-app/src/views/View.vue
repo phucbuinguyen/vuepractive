@@ -57,7 +57,17 @@ export default {
         console.log(error);
       }
     },
-    async markCompleted(id) {},
+    async markCompleted(id) {
+      try {
+        const res = await axios.put(
+          "https://60b87598b54b0a0017c039fe.mockapi.io/store/" + id
+        );
+        console.log("delete id: " + id);
+        this.todos = this.todos.filter((todo) => todo.id !== id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   async created() {
     console.log("slug: " + this.slug);
