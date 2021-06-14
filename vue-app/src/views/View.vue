@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-
+    <TodolistBtn />
     <Todos
       v-bind:todos="todos"
       v-on:del-todo="deleteTodo"
@@ -14,11 +14,13 @@
 import Todos from "../components/Todos";
 import store from "@/store";
 import axios from "axios";
+import TodolistBtn from "./TodolistBtn.vue";
 
 export default {
   name: "View",
   components: {
     Todos,
+    TodolistBtn,
   },
   data() {
     return {

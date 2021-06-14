@@ -1,9 +1,15 @@
 <template>
   <div>
-    {{ displayDays }}
-    {{ displayHours }}
-    {{ displayMinutes }}
-    {{ displaySeconds }}
+    <div class="container">
+      <div id="countdown">
+        <ul>
+          <li>{{ displayDays }}<span id="days"></span>days</li>
+          <li>{{ displayHours }}<span id="hours"></span>Hours</li>
+          <li>{{ displayMinutes }}<span id="minutes"></span>Minutes</li>
+          <li>{{ displaySeconds }}<span id="seconds"></span>Seconds</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,7 +40,7 @@ export default {
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date();
-        const end = new Date(2022, 6, 15, 10, 10, 10, 10);
+        const end = new Date(2021, 6, 16);
         const distance = end.getTime() - now.getTime();
         if (distance < 0) {
           clearInterval(timer);
@@ -55,5 +61,75 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* general styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  align-items: center;
+  background-color: #ffd54f;
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.emoji {
+  display: none;
+  padding: 1rem;
+}
+
+.emoji span {
+  font-size: 4rem;
+  padding: 0 0.5rem;
+}
+
+@media all and (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  li {
+    font-size: 1.125rem;
+    padding: 0.75rem;
+  }
+
+  li span {
+    font-size: 3.375rem;
+  }
+}
 </style>

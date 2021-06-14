@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TodolistBtn />
     <form class="assTaskFrm" @submit="addTask">
       <input type="text" name="title" placeholder="Add Task" v-model="title" />
       <input type="submit" value="Submit" class="btn" />
@@ -9,13 +10,16 @@
 
 <script>
 //import uuid from "uuid";
-
+import TodolistBtn from "./TodolistBtn.vue";
 export default {
   name: "AddTask",
   data() {
     return {
       title: "",
     };
+  },
+  components: {
+    TodolistBtn,
   },
   methods: {
     addTask(event) {
