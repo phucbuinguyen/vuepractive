@@ -1,13 +1,37 @@
 <template>
-  <div>
+  <div id="app">
+    <v-date-picker
+      v-model="date"
+      mode="dateTime"
+      :minute-increment="1"
+      :min-date="new Date()"
+      @input="onDateChange"
+    />
     <div class="container">
-      <div id="countdown">
+      <div id="countdown" v-if="loaded">
+        Countdown to : {{ date }}
+
         <ul>
-          <li>{{ displayDays }}<span id="days"></span>days</li>
-          <li>{{ displayHours }}<span id="hours"></span>Hours</li>
-          <li>{{ displayMinutes }}<span id="minutes"></span>Minutes</li>
-          <li>{{ displaySeconds }}<span id="seconds"></span>Seconds</li>
+          <li>
+            <span id="days">{{ displayDays }}</span
+            >days
+          </li>
+          <li>
+            <span id="hours">{{ displayHours }}</span
+            >hours
+          </li>
+          <li>
+            <span id="minutes">{{ displayMinutes }}</span
+            >minutes
+          </li>
+          <li>
+            <span id="seconds">{{ displaySeconds }}</span
+            >seconds
+          </li>
         </ul>
+
+        <h5 v-if="!expired">...</h5>
+        <h5 v-else>Timer is done!</h5>
       </div>
     </div>
   </div>
@@ -15,12 +39,23 @@
 
 <script>
 export default {
+  // props: ["year", "month", "date", "hour", "minute", "second", "millisecond"],
   data: () => ({
     displayDays: 0,
     displayHours: 0,
     displayMinutes: 0,
     displaySeconds: 0,
+    date: new Date(),
+    loaded: false,
+    expired: false,
   }),
+  // watch: {
+  //   date: function (date) {
+  //     console.log(this.date);
+
+  //     this.showRemaining(date);
+  //   },
+  // },
   mounted() {
     this.showRemaining();
   },
@@ -37,13 +72,21 @@ export default {
     },
   },
   methods: {
+    onDateChange() {
+      this.expired = false;
+
+      (this.displayDays = 0), this.showRemaining(this.date);
+    },
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date();
-        const end = new Date(2021, 6, 16);
+        const end = this.date;
         const distance = end.getTime() - now.getTime();
+
         if (distance < 0) {
           clearInterval(timer);
+          this.expired = true;
+          this.loaded = true;
           return;
         }
 
@@ -55,6 +98,7 @@ export default {
         this.displaySeconds = seconds < 10 ? "0" + seconds : seconds;
         this.displayHours = hours < 10 ? "0" + hours : hours;
         this.displayDays = days < 10 ? "0" + days : days;
+        this.loaded = true;
       }, 1000);
     },
   },
@@ -63,6 +107,13 @@ export default {
 
 <style scoped>
 /* general styling */
+.container {
+  width: 43%;
+  float: right;
+  padding: 10px;
+  margin-right: 15% !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -92,30 +143,18 @@ body {
 h1 {
   font-weight: normal;
   letter-spacing: 0.125rem;
-  text-transform: uppercase;
 }
 
 li {
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 1em;
   list-style-type: none;
   padding: 1em;
-  text-transform: uppercase;
 }
 
 li span {
   display: block;
-  font-size: 4.5rem;
-}
-
-.emoji {
-  display: none;
-  padding: 1rem;
-}
-
-.emoji span {
-  font-size: 4rem;
-  padding: 0 0.5rem;
+  font-size: 3.5rem;
 }
 
 @media all and (max-width: 768px) {
